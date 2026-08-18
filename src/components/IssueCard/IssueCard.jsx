@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function({
@@ -5,14 +6,35 @@ export default function({
     title = '',
     label = ''
 }) {
+
+    const [isSelected, setSelected] = useState(false);
+    let colorBG = '';
+    let color = ''
+
+    if(label === 'feature') {
+        colorBG = "#1F6FB2"
+        color = '#8DBEE8'
+    }else if(label === 'bug'){
+        colorBG = "#C4362E"
+        color = '#F0938C'
+    }else{
+        colorBG = "#5F636B"
+        color = "#A8ADB6"
+    }
+
+
+    const handleOnClick = () => {
+        setSelected((prev) => !prev);
+    }
+
     return(
-        <StyledIssueCard>
+        <StyledIssueCard $isSelected={isSelected} onClick={handleOnClick}>
             <Title>
                 {title}
             </Title>
 
             <LabelHolder>
-                <Label>{label}</Label>
+                <Label $labelBG={colorBG} $color={color}>{label}</Label>
             </LabelHolder>
 
         </StyledIssueCard>
@@ -22,7 +44,8 @@ export default function({
 const StyledIssueCard = styled.div`
     width: 357px;
     background-color: #191C22;
-    border: 1px solid #2C313A;
+    border: 1px solid;
+    border-color: ${({ $isSelected }) => $isSelected ? '#5A4FE0' : '#2C313A'};
     border-radius: 10px;
     padding: 9px 11px;
     margin-bottom: 7px;
@@ -44,8 +67,9 @@ const LabelHolder = styled.div`
 `;
 
 const Label = styled.span`
-    background-color: #1F6FB2;
-    color: #8DBEE8;
+    background-color: ${({ $labelBG }) => $labelBG};
+    color: ${( {$color} ) => $color};
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 600;
     font-size: 10px;
     padding: 3px 7px;

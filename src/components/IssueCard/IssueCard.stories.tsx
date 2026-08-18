@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import styled from 'styled-components';
 import IssueCard from './IssueCard';
 
-const meta: Meta<typeof IssueCard> = {
+const meta = {
     component: IssueCard,
     argTypes: {
         id: { control: 'number' },
@@ -20,13 +19,27 @@ const meta: Meta<typeof IssueCard> = {
 
 export default meta;
 
-type Story = StoryObj<typeof IssueCard>;
-
-export const DefaultIssueCard: Story = {
+export const FeatureIssueCard = {
     args: {
         id: 1,
         title: 'Add dark mode toggle',
         label: 'feature',
+    },
+};
+
+export const BugIssueCard = {
+    args: {
+        id: 1,
+        title: 'Add dark mode toggle',
+        label: 'bug',
+    },
+};
+
+export const ChoreIssueCard = {
+    args: {
+        id: 1,
+        title: 'Add dark mode toggle',
+        label: 'chore',
     },
 };
 
