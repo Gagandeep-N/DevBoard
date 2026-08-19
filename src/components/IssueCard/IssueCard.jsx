@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function({
+export default function IssueCard({
     id = 1,
     title = '',
     label = ''
